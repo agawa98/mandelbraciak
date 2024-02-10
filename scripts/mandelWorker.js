@@ -4,11 +4,14 @@ onmessage = (msg)=>{
     const height = data.height
     const xStartingPoint = data.xStartingPoint
     const yStartingPoint = data.yStartingPoint
+    const maxIterations = data.maxIterations
 
     const magniFactor = 2000
     const panX = 2
     const panY = 1.5
     const imageData = new Uint8ClampedArray(width * height * 4)
+
+
 
 
     function iterate(x, y, maxIterations){
@@ -26,8 +29,8 @@ onmessage = (msg)=>{
         return iteration
     }
 
-    for(let xx = 0; i < width; xx++){               // xx - szerokosc   yy - wysoksoc
-        for(let yy = 0; j< height; yy++){
+    for(let xx = 0; xx < width; xx++){               // xx - szerokosc   yy - wysoksoc
+        for(let yy = 0; yy< height; yy++){
             let x = (xx + xStartingPoint) / magniFactor - panX
             let y = (yy + yStartingPoint) / magniFactor - panY
 
@@ -41,6 +44,8 @@ onmessage = (msg)=>{
             imageData[index + 3] = 255        // alpha
         }
     }
+
+    iterate(xStartingPoint,yStartingPoint,maxIterations)
 
 
     //postuje meessage

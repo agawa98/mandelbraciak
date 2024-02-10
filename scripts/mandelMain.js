@@ -2,18 +2,21 @@ const workers = []
 const numOfWorkers = 4
 
 
-document.getElementById("mandelCanvas").height = window.innerHeight + "px"
-document.getElementById("mandelCanvas").width = window.innerWidth + "px"
 
 let workerWidth = window.innerWidth / 4
 let workerHeight = window.innerHeight
 
 let maxIterations = 1000    //todo: zrob jakis input z tym
 
+const canvas = document.getElementById("mandelCanvas")
+const ctx = canvas.getContext("2d")
+
 
 for(let i = 0; i < numOfWorkers; i++){
-    const worker = new Worker("mandelWorker.js")
+    const worker = new Worker("scripts/mandelWorker.js")
     workers.push(worker)
+
+    console.log("workers sent")
 
     const workerData = {
         width: workerWidth,
