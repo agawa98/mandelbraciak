@@ -6,9 +6,9 @@ onmessage = (msg)=>{
     const yStartingPoint = data.yStartingPoint
     const maxIterations = data.maxIterations
 
-    const magniFactor = 2000
-    const panX = 2
-    const panY = 1.5
+    const magniFactor = 400
+    const panX = 3
+    const panY = 1
     const imageData = new Uint8ClampedArray(width * height * 4)
 
 
@@ -39,13 +39,11 @@ onmessage = (msg)=>{
             let index = (xx + yy * width) * 4
 
             imageData[index] = color          // red
-            imageData[index + 1] = color      // green
-            imageData[index + 2] = color      // blue
+            imageData[index + 1] = 120      // green
+            imageData[index + 2] = 33   // blue
             imageData[index + 3] = 255        // alpha
         }
     }
-
-    iterate(xStartingPoint,yStartingPoint,maxIterations)
 
 
     //postuje meessage
